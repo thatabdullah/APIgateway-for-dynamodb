@@ -23,7 +23,7 @@ resource "aws_api_gateway_integration" "put-item-integration" {
   rest_api_id          = aws_api_gateway_rest_api.dynamodb-api.id
   resource_id          = aws_api_gateway_resource.comments.id
   http_method          = aws_api_gateway_method.put-item-method.http_method
-  type                 = "AWS_PROXY"
+  type                 = "AWS"
   uri   = "arn:aws:apigateway:${var.region}:dynamodb:action/PutItem"
   credentials = aws_iam_policy.put_item_policy.arn
   request_templates = {
@@ -51,7 +51,7 @@ resource "aws_api_gateway_integration" "get-comments-integration" {
   resource_id             = aws_api_gateway_resource.comments.id
   http_method             = aws_api_gateway_method.get-comment-method.http_method
   integration_http_method = "POST" #it's also POST according to AWS docs where it has been said that all dynamodb queries are POST
-  type                    = "AWS_PROXY"  
+  type                    = "AWS"  
   credentials = aws_iam_policy.query_comments_policy.arn
   uri = "arn:aws:apigateway:${var.region}:dynamodb:action/Query"
  request_templates = {
