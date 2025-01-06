@@ -7,3 +7,6 @@ variable "secret_key" {
 variable "account_id" {
   type = string
 }
+variable "region" {
+  default = "us-east-2"
+}
